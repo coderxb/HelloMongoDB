@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+ 
+	<!-- 加載property方法一  -->
+  	<context:property-placeholder location="classpath:config.properties" />
+	<!-- 加載property方法二
+	<bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>/config.properties</value>
+            </list>
+        </property>
+    </bean>
+	 -->
+   	<!-- 加載property方法三
+	<bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">  
+            <value>classpath:config.properties</value>  
+        </property>  
+        <property name="systemPropertiesMode">  
+            <value>1</value>  
+        </property>  
+        <property name="searchSystemEnvironment">  
+            <value>true</value>  
+        </property>  
+        <property name="ignoreUnresolvablePlaceholders">  
+            <value>true</value>  
+        </property>
+    </bean>
+   	 -->
+
+    <bean id="mongo" class="com.mongodb.Mongo">
+        <constructor-arg type="String" value="${db.host}"></constructor-arg>
+        <constructor-arg type="int" value="${db.port}"></constructor-arg>
+    </bean>
+    
+    <bean id="morphia" class="com.gavin.mongodb.common.MorphiaBean">
+        <property name="mg" ref="mongo"></property>
+        <property name="dbName" value="test"></property>
+    </bean>
+</beans>
