@@ -16,11 +16,19 @@
 			<version>4.8</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
 			<version>2.10.1</version>
 		</dependency>
+		 -->
 		<!-- google update version 0.98 , This morphia changed on github.
 		<dependency>
 			<groupId>com.google.code</groupId>
